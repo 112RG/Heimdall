@@ -92,12 +92,6 @@ class AuthController() {
         }
     }
 
-    // Forwards all routes to FrontEnd except: '/', '/index.html', '/api', '/api/**'
-    // Required because of 'mode: history' usage in frontend routing, see README for further details
-    @RequestMapping("{_:^(?!index\\.html|api).$}")
-    fun redirectApi(): String {
-        return "forward:/"
-    }
     private fun emailExists(email: String): Boolean {
         return userRepository.findByEmail(email).isPresent
     }
