@@ -35,10 +35,10 @@ class JwtAuthTokenFilter : OncePerRequestFilter() {
 
                 val userDetails = userDetailsService!!.loadUserByUsername(username)
                 val authentication = UsernamePasswordAuthenticationToken(
-                        userDetails, null, userDetails.getAuthorities())
-                authentication.setDetails(WebAuthenticationDetailsSource().buildDetails(request))
+                        userDetails, null, userDetails.authorities)
+                authentication.details = WebAuthenticationDetailsSource().buildDetails(request)
 
-                SecurityContextHolder.getContext().setAuthentication(authentication)
+                SecurityContextHolder.getContext().authentication = authentication
             }
         } catch (e: Exception) {
             logger.error("Can NOT set user authentication -> Message: {}", e)

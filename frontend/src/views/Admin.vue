@@ -5,11 +5,7 @@
         <div class="col-auto mb-3">
             <b-card header="Upload" class="text-left" border-variant="secondary" style="width: 30rem;">
                 <b-card-body>
-                    <b-form id="uf">
-                        <b-form-file plain multiple/>
                         <small>{{currentUser}}</small>
-                        <b-button v-on:click="decodeToken()"/>
-                    </b-form>
                 </b-card-body>
             </b-card>
         </div>
@@ -20,12 +16,7 @@
 
 <script>
 export default {
-  name: 'UserHome',
-  methods: {
-    decodeToken () {
-      this.$store.dispatch('auth/checkAccessTokenExpiry')
-    }
-  },
+  name: 'Admin',
   computed: {
     currentUser () {
       return this.$store.state.auth.user

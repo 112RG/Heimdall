@@ -7,7 +7,7 @@
         <b-nav-item to="/user/upload">Settings</b-nav-item>
       </b-nav>
       <b-nav class="ml-auto">
-        <b-nav-item v-if="showAdminBoard" to="/user/upload">Admin</b-nav-item>
+        <b-nav-item v-if="showAdminBoard" to="/admin">Admin</b-nav-item>
         <b-nav-item to="/user/upload">Info</b-nav-item>
         <b-nav-item href @click.prevent="logOut">Logout</b-nav-item>
       </b-nav>
@@ -23,9 +23,8 @@ export default {
       return this.$store.state.auth.user
     },
     showAdminBoard () {
-      if (this.currentUser && this.currentUser.authorities) {
-        console.log(this.currentUser.authorities)
-        return this.currentUser.authorities.includes('ROLE_ADMIN')
+      if (this.currentUser && this.currentUser.roles) {
+        return this.currentUser.roles.includes('ROLE_ADMIN')
       }
 
       return false

@@ -40,7 +40,7 @@ class ExceptionController {
     }
     //Direct all non error traffic to vue frontend
     //@RequestMapping(value = ["/**/{path:[^.]*}"])
-    @RequestMapping(value = ["/user/**", "/admin/**"])
+    @RequestMapping(value = ["/user/**", "/admin/**", "/login"])
     fun handleVue(): String? {
         return "forward:/"
     }

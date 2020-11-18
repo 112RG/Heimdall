@@ -9,4 +9,5 @@ interface UserService {
     fun createUser(request: NewUser): ResponseEntity<*>
 
     fun login(request: LoginUser): ResponseEntity<*>
+    fun refreshToken(user: String): ResponseEntity<*>
 }

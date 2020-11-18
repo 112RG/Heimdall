@@ -6,12 +6,14 @@ import com._112.asgard.heimdall.jwt.JwtProvider
 import com._112.asgard.heimdall.model.LoginUser
 import com._112.asgard.heimdall.model.NewUser
 import com._112.asgard.heimdall.repository.RoleRepository
+import com._112.asgard.heimdall.web.JwtRefreshResponse
 import com._112.asgard.heimdall.web.JwtResponse
 import com._112.asgard.heimdall.web.ResponseMessage
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.authentication.AuthenticationManager
+import org.springframework.security.authentication.AuthenticationServiceException
 import org.springframework.security.authentication.DisabledException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
@@ -59,10 +61,21 @@ class UserServiceImpl() : UserService {
         val authentication = authenticationManager.authenticate(
                 UsernamePasswordAuthenticationToken(request.email, request.password))
         SecurityContextHolder.getContext().authentication = authentication
-        val jwt: String = jwtProvider.generateJwtToken(user.username!!)
+        val accessToken: String = jwtProvider.generateJwtToken(user.username!!)
+        val refreshToken: String = jwtProvider.generateJwtRefreshToken(user.username!!)
         val roles: List<String> = user.authorities.stream()
                 .map { item -> item.authority }
                 .collect(Collectors.toList())
-        return ResponseEntity.ok(JwtResponse(jwt, user.username, roles))
+        return ResponseEntity.ok(JwtResponse(accessToken,refreshToken, user.username, roles))
+    }
+
+    override fun refreshToken(token: String): ResponseEntity<*> {
+        if(jwtProvider.validateJwtToken(token)){
+            val name = jwtProvider.getUserNameFromJwtToken(token)
+            if(!name.startsWith("Refresh-")) throw AuthenticationServiceException("Cant refresh with Access token")
+            val user = userDetailsService.loadUserByUsername(name.substring(8))
+            return ResponseEntity.ok(JwtRefreshResponse(jwtProvider.generateJwtToken(user.username), jwtProvider.generateJwtRefreshToken(user.username)))
+        }
+        throw AuthenticationServiceException("Failed to decode token")
     }
 }
