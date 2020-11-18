@@ -9,13 +9,11 @@ plugins {
 }
 
 group = "com._112.asgard"
-version = "0.1"
 java.sourceCompatibility = JavaVersion.VERSION_11
-val buildNumber = System.getProperty("build.number") ?: ""
-base.archivesBaseName = "Heimdall-v$version-b$buildNumber"
+version = "0.1"
+base.archivesBaseName = "Heimdall-v$version"
 repositories {
 	mavenCentral()
-
 }
 
 dependencies {
