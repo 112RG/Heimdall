@@ -23,7 +23,7 @@ import java.util.stream.Collectors
 
 
 @Service
-class UserServiceImpl() : UserService {
+class UserServiceImpl : UserService {
     @Autowired
     lateinit var userRepository: com._112.asgard.heimdall.repository.UserRepository
 
@@ -38,7 +38,7 @@ class UserServiceImpl() : UserService {
     @Autowired
     lateinit var userDetailsService: UserDetailsServiceImpl
     override fun createUser(request: NewUser): ResponseEntity<*> {
-        if(!userDetailsService.emailExists(request.email!!)) {
+        return if(!userDetailsService.emailExists(request.email!!)) {
 
             // Creating user's account
             val user = User(null,
@@ -48,9 +48,9 @@ class UserServiceImpl() : UserService {
             )
             user.roles = listOf(roleRepository.findByName(ERole.ROLE_ADMIN))
             userRepository.save(user)
-            return ResponseEntity(ResponseMessage("User registered successfully!"), HttpStatus.OK)
+            ResponseEntity(ResponseMessage("User registered successfully!"), HttpStatus.OK)
         } else {
-            return ResponseEntity(ResponseMessage("Email is already taken!"),
+            ResponseEntity(ResponseMessage("Email is already taken!"),
                     HttpStatus.BAD_REQUEST)
         }
     }

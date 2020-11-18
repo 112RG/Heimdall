@@ -1,6 +1,5 @@
 package com._112.asgard.heimdall.controller
 
-import com._112.asgard.heimdall.jpa.User
 import com._112.asgard.heimdall.jwt.JwtProvider
 import com._112.asgard.heimdall.model.LoginUser
 import com._112.asgard.heimdall.model.NewUser
@@ -9,10 +8,8 @@ import com._112.asgard.heimdall.service.UserDetailsServiceImpl
 import com._112.asgard.heimdall.service.UserServiceImpl
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
-import org.springframework.security.access.prepost.PreAuthorize
 
 import org.springframework.security.authentication.AuthenticationManager
-import org.springframework.security.core.Authentication
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid

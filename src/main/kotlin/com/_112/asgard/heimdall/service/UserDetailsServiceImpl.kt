@@ -1,6 +1,5 @@
 package com._112.asgard.heimdall.service
 
-import com._112.asgard.heimdall.jpa.User
 import com._112.asgard.heimdall.repository.RoleRepository
 import com._112.asgard.heimdall.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -23,10 +22,10 @@ class UserDetailsServiceImpl : UserDetailsService {
     @Transactional
     @Throws(UsernameNotFoundException::class)
     override fun loadUserByUsername(email: String): UserDetails {
-        val userCandicate = userRepository.findByEmail(email)
-        if(userCandicate.isPresent){
-            val user = userCandicate.get()
-            val authorities: List<GrantedAuthority> = user.roles!!.stream().map({ role -> SimpleGrantedAuthority(role.name)}).collect(Collectors.toList<GrantedAuthority>())
+        val userCandidate = userRepository.findByEmail(email)
+        if(userCandidate.isPresent){
+            val user = userCandidate.get()
+            val authorities: List<GrantedAuthority> = user.roles!!.stream().map { role -> SimpleGrantedAuthority(role.name) }.collect(Collectors.toList<GrantedAuthority>())
             return org.springframework.security.core.userdetails.User
                     .withUsername(email)
                     .password(user.password)

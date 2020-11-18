@@ -45,7 +45,7 @@ public class JwtProvider {
 
     fun validateJwtToken(authToken: String): Boolean {
         try {
-            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken)
+            Jwts.parserBuilder().setSigningKey(jwtSecret).build().parseClaimsJws(authToken)
             return true
         } catch (e: SignatureException) {
             logger.error("Invalid JWT signature -> Message: {} ", e)
@@ -64,8 +64,7 @@ public class JwtProvider {
 
     fun getUserNameFromJwtToken(token: String): String {
         try {
-            System.out.println(Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token))
-            return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).body.subject
+            return Jwts.parserBuilder().setSigningKey(jwtSecret).build().parseClaimsJws(token).body.subject
         } catch (e: SignatureException) {
             logger.error("Invalid JWT signature -> Message: {} ", e)
         } catch (e: MalformedJwtException) {

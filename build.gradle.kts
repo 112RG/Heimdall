@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "com._112.asgard"
-version = "0.0.1-SNAPSHOT"
+version = "0.1"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
