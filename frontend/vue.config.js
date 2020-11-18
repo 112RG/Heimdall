@@ -1,3 +1,6 @@
 module.exports = {
-   outputDir: "../src/main/resources/public"
+  devServer: {
+    proxy: 'http://localhost:8081'
+  },
+  outputDir: '../src/main/resources/public'
 }

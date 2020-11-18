@@ -1,3 +1,4 @@
+/*
 package com._112.asgard.heimdall.controller
 
 import org.springframework.boot.web.servlet.error.ErrorController
@@ -19,4 +20,4 @@ class RoutesController : ErrorController {
     companion object {
         private const val PATH = "/error"
     }
-}
+}*/

@@ -1,0 +1,169 @@
+html, body {
+    height: 100vh;
+}
+root {
+	 --loginBorderRadus: 0.25rem;
+}
+.login-page {
+    width: 360px;
+    padding: 8% 0 0;
+		margin: auto;
+}
+a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#over img {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form {
+    position: relative;
+    z-index: 50;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding-left: 29px;
+		padding-right: 29px;
+
+}
+
+.basic-info input {
+    outline: 0;
+    background: rgb(88, 88, 88);
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+		font-size: 14px;
+		border-radius: 0.25rem;
+}
+.basic-info input[type="submit"] {
+    text-transform: uppercase;
+    outline: 0;
+    background: rgb(50, 50, 50);
+    width: 100%;
+    border: 0;
+    color: #E6E6E6;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+		cursor: pointer;
+}
+ .basic-info input:focus{
+	background: rgb(83, 83, 83);
+} 
+.form button:hover,.form button:active,.form button:focus,.form input[type="submit"]:hover,.form input[type="submit"]:focus {
+    background: rgb(83, 83, 83);
+}
+.form .message {
+    margin: 15px 0 0;
+    color: #8a8a8a;
+    font-size: 12px;
+}
+.form .message a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.regular-checkbox {
+    display: none;
+}
+input:focus::placeholder {
+	color: transparent;
+  }
+.regular-checkbox {
+    background-color: #f2f2f2;
+    border: 0;
+    box-shadow: 0;
+    padding: 9px;
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
+}
+
+.regular-checkbox:checked + label {
+    background-color: #ffffff;
+    border: 0;
+    color: #99a1a7;
+}
+canvas {
+    left: 0px;
+    top: 0px;
+    position:absolute;
+    z-index: 1;
+}
+body {
+    background-color: #1a1a1a;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.flip-horizontal-r {
+    top: 50%;
+    float: right;
+    margin-left: -40px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.flip-horizontal-l {
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+    -ms-filter: fliph; /*IE*/
+    filter: fliph; /*IE*/
+    float: left;
+    margin-left: -40px;
+    margin-left: auto;
+    margin-right: auto;
+}
+audio {
+    z-index: 500;
+}
+.bb {
+    text-transform: uppercase;
+    outline: 0;
+    background: rgb(50, 50, 50);
+    border: 0;
+    padding: 15px;
+    color: rgb(110, 110, 110);
+    font-size: 14px;
+    cursor: pointer;
+}
+::placeholder{
+    color: #E6E6E6;
+    opacity: 1;
+}
+.fpage {
+    width:100%;
+    height:100%;
+}
+.afpage {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.ra {
+    padding-top: 5%;
+    padding-right: 15%;
+    max-width:100%;
+    height:auto;
+    max-height:100%;
+}
+.audio {
+    z-index: 500;
+}

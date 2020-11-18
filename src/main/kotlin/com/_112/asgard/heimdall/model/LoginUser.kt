@@ -2,14 +2,18 @@ package com._112.asgard.heimdall.model
 
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.sun.istack.NotNull
 import java.io.Serializable
+import javax.validation.constraints.NotBlank
 
 class LoginUser : Serializable {
 
     @JsonProperty("email")
+    @NotBlank(message = "Email must be provided")
     var email: String? = null
 
     @JsonProperty("password")
+    @NotBlank(message = "Password must be provided")
     var password: String? = null
 
     @JsonProperty("recapctha_token")

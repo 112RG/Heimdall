@@ -1,0 +1,112 @@
+body {
+  background-color: #171717;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+.footer {
+  color: #4a4a4a !important;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  text-align: center;
+  font-size: 13px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+footer {
+  height: 50px;
+  flex-shrink: 0;
+}
+.max {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.jumbotron{
+    background-color: #303030;
+}
+.form-control:read-only,.form-control:focus,.form-control{
+    border-color: #303030;
+    background-color: #565656 !important;
+    border-radius: .25rem;
+    border: 1px solid #284d66;
+    color: white
+}
+.btn,.btn-primary {
+  border: 1px solid #284d66;
+  background-color: #232323 !important;
+}
+.card{
+    background-color: #3d3d3d3d;
+    border: 1px solid #284d66 !important;
+    color:white
+}
+
+.card-header{
+      background-color: #444444;
+}
+.navbar{
+  background-color: #303030 !important;
+}
+.pagination > .active > a
+{
+  color: white !important;
+  border-color: #203e52 !important;
+  background-color: #232323 !important ;
+}
+.pagination > .current > a
+{
+  color: white !important;
+  border-color: #4684ad !important;
+  background-color: #232323 !important ;
+}
+.pagination > li > a
+{
+  color: #444444 !important;
+  border-color: #444444 !important;
+  background-color: #232323 !important ;
+}
+.toast-header {
+  color: white !important;
+  border-color: #444444 !important;
+  background-color: #444444 !important ;
+}
+.toast{
+  color: white !important;
+  border-color: #444444 !important;
+  background-color: #232323 !important ;
+}
+.close {
+  color: white !important;
+}
+
+.table td,
+th {
+	text-align: left;
+  padding: .5rem 1rem;
+  border-top: 1px solid #4684ad
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #303030;
+  color: #fff;
+
+}
+tbody tr {
+  background: #444;
+	color: #fff;
+
+}
+th {
+  border-color: #444444 !important;
+	background-color: #444444;
+	color: #fff;
+}

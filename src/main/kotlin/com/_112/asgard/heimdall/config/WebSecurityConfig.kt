@@ -3,6 +3,7 @@ package com._112.asgard.heimdall.config
 import com._112.asgard.heimdall.jwt.JwtAuthEntryPoint
 import com._112.asgard.heimdall.jwt.JwtAuthTokenFilter
 import com._112.asgard.heimdall.service.UserDetailsServiceImpl
+import com._112.asgard.heimdall.service.UserServiceImpl
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.beans.factory.annotation.Autowired
@@ -24,7 +25,8 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
 
     @Autowired
     internal var userDetailsService: UserDetailsServiceImpl? = null
-
+    @Autowired
+    internal var userService: UserServiceImpl? = null
     @Autowired
     private val unauthorizedHandler: JwtAuthEntryPoint? = null
 
