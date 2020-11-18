@@ -11,7 +11,7 @@ plugins {
 group = "com._112.asgard"
 java.sourceCompatibility = JavaVersion.VERSION_11
 version = "0.1"
-base.archivesBaseName = "Heimdall-v$version"
+base.archivesBaseName = "Heimdall"
 repositories {
 	mavenCentral()
 }
