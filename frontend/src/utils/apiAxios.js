@@ -1,6 +1,6 @@
 import axios from 'axios'
 import store from '../store'
-
+import authHeader from '../services/auth-header'
 const apiAxios = axios.create({
   baseURL: 'http://localhost:8080/api/',
   timeout: 1000,
@@ -9,12 +9,8 @@ const apiAxios = axios.create({
 
 // before any API call make sure that the access token is good
 apiAxios.interceptors.request.use(async config => {
-  store.dispatch('auth/isLoggedIn')
-  /*   const response = await store.dispatch('getUserSession')
-  if (response && response.accessToken && response.accessToken.jwtToken) {
-    config.headers.AccessToken = response.accessToken.jwtToken
-  } */
+  await store.dispatch('auth/checkAccessTokenExpiry')
+  config.headers = authHeader()
   return config
 })
-
 export default apiAxios

@@ -1,5 +1,7 @@
 import AuthService from '../services/auth-service'
+import UserService from '../services/user-service'
 import jwtDecode from 'jwt-decode'
+import Router from '../router'
 const user = JSON.parse(localStorage.getItem('user'))
 const initialState = user
   ? { status: { loggedIn: true }, user }
@@ -9,6 +11,9 @@ export const auth = {
   namespaced: true,
   state: initialState,
   actions: {
+    getAdmin ({ commit }) {
+      UserService.getAdminBoard()
+    },
     login ({ commit }, user) {
       return AuthService.login(user).then(
         user => {
@@ -38,25 +43,31 @@ export const auth = {
         }
       )
     },
-    checkAccessTokenExpiry ({ commit, state, getters, dispatch }) {
+    async checkAccessTokenExpiry ({ commit, state, getters, dispatch }) {
       if (state.status.loggedIn) {
-        console.log('User is logged in')
         const access = jwtDecode(state.user.accessToken)
         const nowInSecs = Date.now() / 1000
         console.log((access.exp - nowInSecs))
         const isExpiring = (access.exp - nowInSecs) < 30
         if (isExpiring) {
           console.log('Token expirying')
-          AuthService.logout()
-          commit('logout')
-          return false
+          const newTokens = await AuthService.refresh(state.user.refreshToken)
+          if (newTokens.refreshToken && newTokens.accessToken) {
+            console.log('Updating tokens')
+            user.refreshToken = newTokens.refreshToken
+            user.accessToken = newTokens.accessToken
+            localStorage.setItem('user', JSON.stringify(user))
+            commit('loginSuccess', user)
+          } else {
+            console.log('Failed to refresh token')
+            AuthService.logout()
+            commit('logout')
+            Router.push('/login')
+          }
         } else {
           console.log('Not expiryed')
-          return true
         }
       }
-      return false
-
       // inspect the store access token's expiration\
       /*       if (getters.isLoggedIn) {
         const access = jwtDecode(state.jwt.access)
@@ -69,13 +80,13 @@ export const auth = {
       } */
     },
     isLoggedIn ({ getters, dispatch }) {
-      console.log('Checking loggined int')
       const refresh = localStorage.getItem('user')
       if (refresh) {
         if (getters.isLoggedIn) {
           dispatch('checkAccessTokenExpiry')
         } else {
           // dispatch('refreshAccessToken')
+          return false
         }
         return getters.isLoggedIn
       }
