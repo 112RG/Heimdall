@@ -74,6 +74,8 @@ class UserServiceImpl : UserService {
             val name = jwtProvider.getUserNameFromJwtToken(token)
             if(!name.startsWith("Refresh-")) throw AuthenticationServiceException("Cant refresh with Access token")
             val user = userDetailsService.loadUserByUsername(name.substring(8))
+
+            if(!user.isEnabled) throw DisabledException("This account has been disabled. Username: ${user.username}")
             return ResponseEntity.ok(JwtRefreshResponse(jwtProvider.generateJwtToken(user.username), jwtProvider.generateJwtRefreshToken(user.username)))
         }
         throw AuthenticationServiceException("Failed to decode token")

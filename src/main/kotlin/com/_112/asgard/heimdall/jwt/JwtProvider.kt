@@ -24,7 +24,7 @@ public class JwtProvider {
 
     var jwtSecret: String = "7b6ed5302e28f8ea9a140d297aae438d5658c97f6f84d8e98886b09411d5f9c9f11920a8851fddde43e604bcf6da9fe10a0f6cc4f2ec2750d77e514340871254"
 
-    var jwtExpiration:Int?=35
+    var jwtExpiration:Int?=45
 
     fun generateJwtToken(username: String): String {
         return Jwts.builder()
